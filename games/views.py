@@ -12,3 +12,9 @@ class GamesView(APIView):
         queryset = Game.objects.all()
         serializer_class = GamesSerializer(queryset, many=True)
         return Response(serializer_class.data)
+
+    def create(self, request):
+        pass
+
+    def push(self, request):
+        pass
