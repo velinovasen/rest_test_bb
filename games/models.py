@@ -35,9 +35,9 @@ class Competition(models.Model):
 
 
 class Game(models.Model):
-    team_home = models.ForeignKey(Team, on_delete=models.CASCADE)
-    team_away = models.ForeignKey(Team, on_delete=models.CASCADE)
-    competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
+    team_home = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team_home")
+    team_away = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team_away")
+    competition = models.ForeignKey(Competition, on_delete=models.CASCADE, related_name="competition")
     home_odd = models.FloatField()
     draw_odd = models.FloatField()
     away_odd = models.FloatField()
