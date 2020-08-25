@@ -16,6 +16,7 @@ class CreateUserSerializer(ModelSerializer):
         fields = ["id", "username", "password", "email", "first_name", "last_name"]
         write_only_fields = ["password",]
         read_only_fields = ["id",]
+        extra_kwargs = {'password': {'write_only': True}}              # HIDES PASSWORD FROM GET, AFTER THE POST METHOD
 
     def create(self, validated_data):
         user = User.objects.create(
