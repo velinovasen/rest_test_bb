@@ -19,5 +19,5 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('games/', include('games.urls')),
-    re_path("^rest-auth/$", include('rest_auth.urls'))
+
 ]
