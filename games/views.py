@@ -1,9 +1,7 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
-from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .models import Game, Team, Competition
-from .serializers import GamesSerializer, TeamSerializer, CompetitionSerializer
+from .serializers import GamesSerializer, TeamSerializer, CompetitionSerializer, CreateUserSerializer
 # Create your views here.
 
 
@@ -20,3 +18,8 @@ class TeamView(ModelViewSet):
 class CompetitionView(ModelViewSet):
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
+
+
+class CreateUserView(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = CreateUserSerializer
