@@ -4,7 +4,8 @@ from django.db import models
 
 TYPES_OF_COMPETITIONS = [
     ("club", "club"),
-    ("nation", "nation")
+    ("nation", "nation"),
+    ("world", "world"),
 ]
 
 CONTINENTS = [
@@ -12,22 +13,22 @@ CONTINENTS = [
     ("AS", "Asia"),
     ("AF", "Africa"),
     ("NA", "North America"),
-    ("SA", "South America")
+    ("SA", "South America"),
+    ("WW", "Worldwide")
 ]
 
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
-    continent = models.CharField(max_length=100, choices=CONTINENTS)
 
     def __str__(self):
-        return f"{self.name} - {self.country} - {self.continent}"
+        return f"{self.name} - {self.country}"
 
 
 class Competition(models.Model):
     name = models.CharField(max_length=100)
-    continent = models.CharField(max_length=20)
+    continent = models.CharField(max_length=20, choices=CONTINENTS)
     type = models.CharField(max_length=20, choices=TYPES_OF_COMPETITIONS)
 
     def __str__(self):

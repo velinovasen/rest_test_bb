@@ -3,20 +3,26 @@ from rest_framework import serializers
 from .models import Game, Team, Competition
 
 
-class GamesSerializer(serializers.HyperlinkedModelSerializer):
+class GamesSerializer(serializers.ModelSerializer):
+    #url = serializers.HyperlinkedIdentityField(view_name="games:user-detail")
+
     class Meta:
         model = Game
         fields = ["team_home", "team_away", "competition", "home_odd",
                   "draw_odd", "away_odd", "prediction", "result", "won", "profit"]
 
 
-class TeamSerializer(serializers.HyperlinkedModelSerializer):
+class TeamSerializer(serializers.Serializer):
+    #url = serializers.HyperlinkedIdentityField(view_name="games:user-detail")
+
     class Meta:
         model = Team
-        fields = ["name", "country", "continent"]
+        fields = ["name", "country"]
 
 
-class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
+class CompetitionSerializer(serializers.ModelSerializer):
+    #url = serializers.HyperlinkedIdentityField(view_name="games:user-detail")
+
     class Meta:
         model = Competition
         fields = ["name", "continent", "type"]
