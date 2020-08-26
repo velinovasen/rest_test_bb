@@ -1,29 +1,22 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Game
-from .serializers import GamesSerializer, CreateUserSerializer
+from rest_framework.viewsets import ModelViewSet
+from .models import Game, Team, Competition
+from .serializers import GamesSerializer, TeamSerializer, CompetitionSerializer
 # Create your views here.
 
 
-class GamesView(APIView):
-
-    def get(self, request):
-        queryset = Game.objects.all()
-        serializer_class = GamesSerializer(queryset, many=True)
-        return Response(serializer_class.data)
-
-    def push(self, request):
-        pass
+class GamesView(ModelViewSet):
+    queryset = Game.objects.all()
+    serializer_class = GamesSerializer
 
 
-class CreateUserView(APIView):
+class TeamView(ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
 
-    def post(self, request):
-        serializer = CreateUserSerializer(data=request.data)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
+class CompetitionView(ModelViewSet):
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
